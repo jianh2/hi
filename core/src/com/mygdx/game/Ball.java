@@ -3,14 +3,23 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-public class Ball {
+import java.util.Scanner;
+
+import static com.mygdx.game.MyGdxGame.equal;
+
+public class Ball  {
+    Scanner scan = new Scanner(System.in);
     private Sprite sprite;
     float x = 0f;
+
+    String letter = "";
 
     float y = 0f;
 
@@ -18,49 +27,44 @@ public class Ball {
 
     int xSpeed;
 
-    static boolean keyPressed;
+    static boolean keyPressed = true;
+
+    String userText = "";
+
+
+
+
+
 
     public Ball(Texture texture){
     sprite = new Sprite(texture);
     }
 
+
+
+
+
+
     public void update() {
 
-        y += ySpeed;
-        x += xSpeed;
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            keyPressed = true;
-            ySpeed = 20;
-
-            // your actions
-        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            keyPressed = true;
-            ySpeed = -20;
-
+        if(equal()){
+            y += -2;
         }else{
-            keyPressed = false;
-            ySpeed = 0;
-        }
-        
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-          keyPressed = true;
-            xSpeed = -30;
-            // your actions
-        } else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-
-            xSpeed = 30;
-            keyPressed = true;
-        }else{
-            keyPressed = false;
-            xSpeed = 0;
-
+            y += 3;
         }
 
-
-        if(y>800 && Gdx.input.isKeyPressed(Input.Keys.W)){
+        if (y < -500 || y > 500){
             y = 0;
-
         }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,5 +93,6 @@ public class Ball {
     public static boolean isKeyPressed(){
         return keyPressed;
     }
+
 
 }
